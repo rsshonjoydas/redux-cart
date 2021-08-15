@@ -19,12 +19,16 @@ const cartReducers = (state = initialState, action) => {
       const newCart = [...state.cart, newId];
       return {
         // cart: [{ products: state.products }, ...state.cart, action.id],
-        products: state.products,
+        ...state,
         cart: newCart,
       };
     case REMOVE_FROM_CART:
+      const cartId = action.id;
+      const remainingCart = state.cart.filter((item) => item !== cartId);
       return {
-        cart: state.cart.filter((item) => item !== action.id),
+        // cart: state.cart.filter((item) => item !== action.id),
+        ...state,
+        cart: remainingCart,
       };
 
     default:
