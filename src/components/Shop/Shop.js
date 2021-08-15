@@ -9,10 +9,10 @@ const Shop = (props) => {
     <div>
       <h4>This is Shop</h4>
       <ul>
-        {cart.map((id) => (
-          <li>
-            {id}{' '}
-            <button type="button" onClick={() => removeFromCart(id)}>
+        {cart.map((product) => (
+          <li key={product.cartId}>
+            {product.name}{' '}
+            <button type="button" onClick={() => removeFromCart(product.cartId)}>
               X
             </button>{' '}
           </li>

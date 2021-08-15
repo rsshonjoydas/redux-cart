@@ -15,16 +15,21 @@ const initialState = {
 const cartReducers = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      const newId = action.id;
-      const newCart = [...state.cart, newId];
+      // const newId = action.id;
+      const newItem = {
+        productId: action.id,
+        name: action.name,
+        cartId: state.cart.length + 1,
+      };
+      const newCart = [...state.cart, newItem];
       return {
         // cart: [{ products: state.products }, ...state.cart, action.id],
         ...state,
         cart: newCart,
       };
     case REMOVE_FROM_CART:
-      const cartId = action.id;
-      const remainingCart = state.cart.filter((item) => item !== cartId);
+      const productId = action.id;
+      const remainingCart = state.cart.filter((item) => item.cartId !== productId);
       return {
         // cart: state.cart.filter((item) => item !== action.id),
         ...state,
